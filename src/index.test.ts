@@ -1,4 +1,4 @@
-import app from './index'
+import { app } from './index'
 import sampleRequest from '../test-data/sample_request.json'
 import sampleResponse from '../test-data/sample_response.json'
 
