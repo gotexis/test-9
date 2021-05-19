@@ -1,4 +1,6 @@
-Exis' Typescript / express API Boilerplate
+Test-9
 ====
 
-git clone 
+Please run the automated test listed in `package.json`
+
+`yarn run test`
