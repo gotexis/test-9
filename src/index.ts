@@ -2,6 +2,7 @@ import { config as configEnv } from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import router from './router'
 
 configEnv()
 
@@ -15,12 +16,18 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 // routes here
+app.use(router)
 
 // error handling middleware here
+app.use((error, req, res, next) => {
+  res.status(400).json({ error: 'Could not decode request: JSON parsing failed' })
+})
 
 // start the Express server
-app.listen(port, () => {
-  console.log(`API started at http://localhost:${port}`)
-})
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`API started at http://localhost:${port}`)
+  })
+}
 
 module.exports = app
